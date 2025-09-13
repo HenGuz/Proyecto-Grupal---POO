@@ -1,0 +1,186 @@
+/* ===== Base & Variables ===== */
+* { box-sizing: border-box; }
+:root{
+  --bg: #fafafa;
+  --panel: #ffffff;
+  --text: #1f2328;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --accent: #6d3df7;      
+  --accent-600: #5b2fe1;
+  --shadow: 0 10px 24px rgba(31,35,40,.08);
+  --rad: 12px;
+  --rad-lg: 16px;
+}
+html, body { height: 100%; }
+body{
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  color: var(--text);
+  background: var(--bg);
+  display: flex;
+}
+
+/* ===== Sidebar ===== */
+.sidebar{
+  width: 260px;
+  background: #f7f7f9;
+  border-right: 1px solid var(--line);
+  padding: 18px 14px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 14px;
+}
+.brand{
+  font-weight: 800; letter-spacing: .6px;
+  display: flex; justify-content: center; align-items: center;
+}
+.nav{ display:flex; flex-direction:column; gap:6px; }
+.nav-section{
+  margin: 14px 8px 6px; font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em;
+}
+.nav-item{
+  display:flex; align-items:center; gap:10px;
+  padding: 10px 12px; border-radius: 10px; color:#3a4156; border:1px solid transparent;
+}
+.nav-item i{ font-size: 20px; color:#6f7894; }
+.nav-item:hover{ background:#f0f2f7; border-color:#e6e9f2; }
+.nav-item.active{ background:#efeaff; border-color:#e2dbff; color: var(--accent); }
+.nav-item.active i{ color: var(--accent); }
+
+.sidebar-footer{
+  display:flex; gap:10px; justify-content:center; padding-top: 10px;
+  border-top: 1px dashed #e3e6f2;
+}
+.icon-btn{
+  width:38px; height:38px; display:grid; place-items:center;
+  border:1px solid var(--line); background:#fff; border-radius:10px; cursor:pointer;
+  box-shadow: var(--shadow);
+}
+.icon-btn:hover{ background:#f3f4f6; }
+
+/* ===== Page Layout ===== */
+.page{
+  flex:1; min-height:100vh;
+  display:grid; grid-template-rows:auto 1fr;
+}
+
+/* Topbar */
+.topbar{
+  position: sticky; top:0; z-index: 5;
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 12px 18px; background:#fff; border-bottom: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.topbar .left, .topbar .right{ display:flex; align-items:center; gap:10px; }
+
+.search{
+  display:flex; align-items:center; gap:8px;
+  border:1px solid var(--line); background:#fff; border-radius: 999px;
+  padding: 8px 12px; min-width: clamp(180px, 28vw, 420px);
+  box-shadow: var(--shadow);
+}
+.search i{ color:#8b91a5; }
+.search input{ border:none; outline:none; font: inherit; width:100%; color: var(--text); }
+
+/* Content */
+.content{ padding: 22px 26px 36px; }
+.section{ margin-bottom: 28px; }
+.section-title{ font-size: clamp(22px, 3vw, 28px); margin: 8px 0 14px; }
+
+/* Cards Grid */
+.card-grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
+  gap: 20px;
+}
+@media (max-width: 1100px){ .card-grid{ grid-template-columns: repeat(2, minmax(260px, 1fr)); } }
+@media (max-width: 640px){ .card-grid{ grid-template-columns: 1fr; } }
+
+.card{
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--rad-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.card-media{ height: 150px; background:#e9ecf4; border-bottom: 1px solid var(--line); }
+.placeholder{
+  background: repeating-linear-gradient(-45deg, #e9ecf4 0 14px, #dfe3ee 14px 28px);
+}
+.card-body{ padding: 12px 14px 16px; }
+.card-title{ font-size: 18px; margin: 6px 0; }
+.card-text{ font-size: 14px; color: var(--text); opacity: .9; line-height:1.35; }
+
+/* Tarjeta Crear */
+.card-create{
+  border: 2px dashed #c7cbe2; background: #fbfbff;
+  display:grid; place-items:center; border-radius: var(--rad-lg);
+}
+.card-create-inner{ display:flex; flex-direction:column; align-items:center; gap:6px; color: var(--accent); font-weight:700; }
+.card-create-inner i{ font-size: 34px; }
+
+/* ===== Modal Login ===== */
+.modal{
+  position: fixed; inset: 0; display: none;
+  background: rgba(15,18,28,.28);
+  backdrop-filter: blur(2px);
+}
+.modal.open{ display: grid; place-items: center; }
+
+.modal-dialog{
+  position: relative;
+  width: min(92vw, 440px);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 18px 50px rgba(0,0,0,.18);
+  padding: 28px 26px;
+}
+.modal-close{
+  position: absolute; top: 10px; right: 10px;
+  background:#f3f4f6; border:1px solid var(--line); border-radius:10px;
+  width:36px; height:36px; display:grid; place-items:center; cursor:pointer;
+}
+
+/* Login form (minimalista, basado en tu diseño) */
+.login-wrapper h1{ font-size: 28px; text-align: center; margin-bottom: 8px; }
+
+.input-box{ position: relative; margin: 18px 0; }
+.input-box input{
+  width: 100%; height: 46px; padding: 10px 44px 10px 14px;
+  border-radius: 999px; border: 1.5px solid var(--line);
+  outline: none; background: #fff; font-size: 15px;
+}
+.input-box input:focus{ border-color: var(--accent); box-shadow: 0 0 0 3px rgba(109,61,247,.12); }
+.input-box i{ position: absolute; right: 16px; top: 50%; transform: translateY(-50%); color:#8b91a5; font-size: 20px; }
+
+.remember-forgot{
+  display:flex; justify-content: space-between; align-items:center; margin: 4px 2px 14px; color: var(--muted); font-size: 14px;
+}
+.remember-forgot a{ color: var(--accent); text-decoration: none; }
+.remember-forgot a:hover{ text-decoration: underline; }
+
+.btn{
+  width:100%; height: 46px; border: none; border-radius: 12px;
+  background: var(--accent); color: #fff; font-weight: 700; letter-spacing:.2px; cursor: pointer;
+  box-shadow: 0 8px 18px rgba(109,61,247,.25);
+}
+.btn:hover{ background: var(--accent-600); }
+
+.register-link{ text-align:center; font-size:14px; margin: 12px 0 4px; }
+.register-link a{ color: var(--accent); text-decoration: none; font-weight: 600; }
+.register-link a:hover{ text-decoration: underline; }
+
+.msg{ text-align:center; min-height: 18px; font-size: 14px; color:#d92c20; margin-top:6px; }
+.msg.ok{ color:#1a7f37; }
+
+/* Utilidades */
+.muted{ color: var(--muted); }
+
+/* Responsive sidebar compacta */
+@media (max-width: 980px){
+  .sidebar{ width: 88px; }
+  .nav-item span, .nav-section{ display: none; }
+  .page{ }
+}
